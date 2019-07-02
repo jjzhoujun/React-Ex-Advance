@@ -1,4 +1,6 @@
 import React from "react";
+import "./PostItem.css"
+import like from "./images/like-default.png"
 
 function PostItem(props) {
    const handleClick = () => {
@@ -6,8 +8,8 @@ function PostItem(props) {
    };
    const {post} = props;
    return (
-     <li>
-       <div>
+     <li className="item">
+       <div className="title">
          {post.title}
        </div>
        <div>
@@ -16,9 +18,8 @@ function PostItem(props) {
        <div>
          创建时间：<span>{post.date}</span>
        </div>
-       <div>
-         <button onClick={handleClick}>点赞</button>
-         &nbsp;
+       <div className="like">
+         <span><img alt="vote" src={like} onClick={handleClick}/></span>
          <span>{post.vote}</span>
        </div>
      </li>
