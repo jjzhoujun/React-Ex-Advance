@@ -11,6 +11,7 @@ class PostList extends Component {
     };
     this.timer = null;
     this.handleVote = this.handleVote.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +32,7 @@ class PostList extends Component {
     }
   }
 
-  //todo 需要掌握这里 ...的用法
+  //todo 需要掌握这里 ...的用法, 展开式传值：https://blog.csdn.net/QQ_Empire/article/details/82262478
   handleVote(id) {
      const posts = this.state.posts.map(item => {
        const newItem = item.id === id ? {...item, vote: ++item.vote} : item;
@@ -40,6 +41,16 @@ class PostList extends Component {
     this.setState({
       posts: posts
     });
+  }
+
+  handleSave(post) {
+    const posts = this.state.posts.map(item => {
+      const newItem = item.id === post.id ? post : item;
+      return newItem;
+    });
+    this.setState({
+      posts: posts
+    })
   }
 
   render() {
@@ -52,6 +63,7 @@ class PostList extends Component {
               key = {item.id}
               post = {item}
               onVote = {this.handleVote}
+              onSave = {this.handleSave}
             />
           )}
         </ul>
